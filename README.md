@@ -8,6 +8,9 @@ Omarchy-Bar-Widget, das die **12 kostenlosen Lehrer-Werkzeuge** von
 Werkzeugen, die dann im Standard-Browser laufen – auf dem Beamer-Laptop genauso
 wie am Arbeitsplatz.
 
+> **Live testen & anpassen:** [klassenkiste-omarchy.space-z.ai](https://klassenkiste-omarchy.space-z.ai) –
+> Demo des Widgets, Editor für eigene Werkzeug-Links (generiert fertiges QML) und alle Downloads.
+
 ## Enthaltene Werkzeuge
 
 | Werkzeug | Pfad | Wofür |
