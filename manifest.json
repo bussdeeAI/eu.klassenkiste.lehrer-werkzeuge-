@@ -1,20 +1,19 @@
 {
-  300">"schemaVersion"500">: 1,
-  300">"id"500">: "eu.klassenkiste.lehrer-werkzeuge",
-  300">"name"500">: "Klassenkiste Lehrer-Werkzeuge",
-  300">"version"500">: "1.0.0",
-  300">"author"500">: "Sebastian Blunk · klassenkiste.eu",
-  300">"license"500">: "MIT",
-  300">"description"500">: "Alle 12 kostenlosen Lehrer-Werkzeuge von klassenkiste.eu direkt aus der Omarchy-Leiste: Lärmampel, Timer, Glücksrad, Würfel, Gruppen-Einteiler, Sitzplan und mehr. Öffnet die Werkzeuge im Browser – inklusive Spenden-Link.",
-  300">"kinds"500">: ["bar-widget"],
-  300">"entryPoints"500">: {
-    300">"barWidget"500">: "BarWidget.qml"
+  "schemaVersion": 1,
+  "id": "eu.klassenkiste.lehrer-werkzeuge",
+  "name": "Klassenkiste Lehrer-Werkzeuge",
+  "version": "1.0.0",
+  "author": "Sebastian Blunk · klassenkiste.eu",
+  "license": "MIT",
+  "description": "Alle 12 kostenlosen Lehrer-Werkzeuge von klassenkiste.eu direkt aus der Omarchy-Leiste: Lärmampel, Timer, Glücksrad, Würfel, Gruppen-Einteiler, Sitzplan und mehr. Öffnet die Werkzeuge im Browser – inklusive Spenden-Link.",
+  "kinds": ["bar-widget"],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
   },
-  300">"barWidget"500">: {
-    300">"displayName"500">: "Klassenkiste Werkzeuge",
-    300">"category"500">: "Education",
-    300">"allowMultiple"500">: false,
-    300">"defaultSection"500">: "right"
+  "barWidget": {
+    "displayName": "Klassenkiste Werkzeuge",
+    "category": "Education",
+    "allowMultiple": false,
+    "defaultSection": "right"
   }
 }
- 
