@@ -1,16 +1,15 @@
 # Klassenkiste Lehrer-Werkzeuge – Omarchy Plugin
- 
+
 > **Plugin-ID:** `eu.klassenkiste.lehrer-werkzeuge`
- 
+
 Omarchy-Bar-Widget, das die **12 kostenlosen Lehrer-Werkzeuge** von
 [klassenkiste.eu](https://klassenkiste.eu/werkzeuge) direkt in die Omarchy-Leiste
 (Quattro-Shell) bringt: ein Klick auf 🎓 **Werkzeuge** öffnet ein Panel mit allen
 Werkzeugen, die dann im Standard-Browser laufen – auf dem Beamer-Laptop genauso
 wie am Arbeitsplatz.
 
- 
 ## Enthaltene Werkzeuge
- 
+
 | Werkzeug | Pfad | Wofür |
 | --- | --- | --- |
 | 🚦 Lärmampel | `/laermampel` | Lautstärke sichtbar machen (grün/gelb/rot) |
@@ -25,61 +24,74 @@ wie am Arbeitsplatz.
 | 🎵 Stopp-Tanz | `/stopp-tanz` | Musik stoppen – alle frieren ein |
 | 📝 Lückentext-Generator | `/lueckentext` | Arbeitsblatt mit Wortbank, druckbar |
 | 🔗 QR-Code-Generator | `/qr-code` | Aus jedem Link ein QR-Code |
- 
+
 Zusätzlich verlinkt das Panel **klassenkiste.eu** und den
 **Spenden-Button** ([paypal.me/bussdee](https://paypal.me/bussdee)).
 
- 
 ## Installation
- 
+
 Voraussetzung: [Omarchy](https://omarchy.org) (das Plugin nutzt die Quattro-Shell
 von Omarchy 4 – `BarWidget`/`Panel` aus Quickshell).
 
- 
 ### Variante A – per `omarchy` CLI (empfohlen)
- 
+
 ```bash
-omarchy plugin add https://github.com/bussdee/omarchy-klassenkiste.git --enable
+omarchy plugin add https://github.com/bussdeeAI/eu.klassenkiste.lehrer-werkzeuge-.git --enable
 ```
- 
+
 Die CLI klont das Repo, prüft `manifest.json` und legt es unter
 `~/.config/omarchy/plugins/eu.klassenkiste.lehrer-werkzeuge/` ab.
 Danach erscheint 🎓 **Werkzeuge** rechts in der Leiste.
 
- 
-### Variante B – manuell
- 
+### Variante B – per Download (ZIP)
+
+1. ZIP laden – entweder [direkt aus dem GitHub-Repo](https://github.com/bussdeeAI/eu.klassenkiste.lehrer-werkzeuge-/archive/refs/heads/main.zip)
+   oder über die Plugin-Seite auf klassenkiste.eu (Button „PlugIn als ZIP laden“).
+2. Entpacken und Ordner an die richtige Stelle verschieben:
+
 ```bash
-git clone https://github.com/bussdee/omarchy-klassenkiste.git \
+unzip eu.klassenkiste.lehrer-werkzeuge--main.zip
+mv eu.klassenkiste.lehrer-werkzeuge--main \
   ~/.config/omarchy/plugins/eu.klassenkiste.lehrer-werkzeuge
- 
+
 omarchy plugin validate ~/.config/omarchy/plugins/eu.klassenkiste.lehrer-werkzeuge
 omarchy plugin enable eu.klassenkiste.lehrer-werkzeuge
 ```
 
- 
+> **Hinweis:** Beim Entpacken aus GitHub heißt der Ordner
+> `eu.klassenkiste.lehrer-werkzeuge--main` (mit `-main`-Suffix) – nach dem
+> Verschieben trägt er den korrekten Plugin-ID-Namen.
+
+### Variante C – manuell per git
+
+```bash
+git clone https://github.com/bussdeeAI/eu.klassenkiste.lehrer-werkzeuge-.git \
+  ~/.config/omarchy/plugins/eu.klassenkiste.lehrer-werkzeuge
+
+omarchy plugin validate ~/.config/omarchy/plugins/eu.klassenkiste.lehrer-werkzeuge
+omarchy plugin enable eu.klassenkiste.lehrer-werkzeuge
+```
+
 ## Entfernen
- 
+
 ```bash
 omarchy plugin remove eu.klassenkiste.lehrer-werkzeuge
 ```
- 
+
 oder über das Menü: **Setup → Plugins → Remove**.
 Das Deaktivieren ohne Löschen: `omarchy plugin disable eu.klassenkiste.lehrer-werkzeuge`.
 
- 
 ## Nutzung
- 
+
 - **Klick** auf 🎓 **Werkzeuge** in der Leiste → Panel öffnet sich.
 - **Werkzeug antippen** → öffnet im Standard-Browser (z. B. `firefox https://klassenkiste.eu/timer`).
 - **Esc** oder Klick außerhalb → Panel schließen.
 - **Tab** im Panel → zur nächsten Leisten-Panel wechseln (Standard-Verhalten).
 
- 
 ## Dateien
- 
+
 ```
-omarchy-klassenkiste/
+eu.klassenkiste.lehrer-werkzeuge/
 ├── manifest.json   # Plugin-Manifest (schemaVersion 1, Kind: bar-widget)
 ├── BarWidget.qml   # Eintrag in der Omarchy-Leiste
 ├── Panel.qml       # Panel mit den 12 Werkzeugen + Spenden-Link
@@ -89,60 +101,53 @@ omarchy-klassenkiste/
 └── preview.png     # Vorschau für den Plugin-Marketplace
 ```
 
- 
 ## Profi-Tipps
- 
+
 ```bash
 # Manifest validieren (nach eigenen Anpassungen sinnvoll):
 omarchy plugin validate ~/.config/omarchy/plugins/eu.klassenkiste.lehrer-werkzeuge
- 
+
 # Installierte Plugins mit Status prüfen:
 omarchy plugin list --json
- 
+
 # Widget in einen anderen Leisten-Bereich legen:
 #   In manifest.json unter "barWidget" "defaultSection" auf "left" oder "center" setzen.
 ```
- 
+
 QML-Anpassungen (z. B. eigene Links in `Panel.qml`) übernimmt die Shell im
 Regelbetrieb automatisch – sonst einmal `omarchy plugin disable` + `enable`,
 bzw. neu einloggen.
 
- 
 ## Externe Abhängigkeiten
- 
+
 - **Omarchy** mit Quattro-Shell (Quickshell) – stellt `BarWidget`, `Panel`,
   `KeyboardPanel`, `WidgetButton` und die `qs.Commons`/`qs.Ui`-Bibliotheken bereit.
 - **Standard-Browser** – die Werkzeuge selbst laufen auf klassenkiste.eu im Browser;
   das Plugin überträgt keine Daten und startet keine Hintergrundprozesse.
 
- 
 ## Datenschutz
- 
+
 Das Plugin führt **keine eigene Datenverarbeitung** durch: Es zeigt eine Liste
 verlinkter Werkzeuge und öffnet URLs im Browser. Kein Tracking, keine
 Telemetrie, keine Zugriffsrechte auf Dateien oder Geräte.
 
- 
 ## Marketplace
- 
+
 Das Plugin ist für das offizielle Omarchy-Plugin-Verzeichnis vorbereitet
 (Kategorie: *Productivity*, Tags: `education`, `launcher`, `bar`) und kann über
 das [Submission-Formular](https://github.com/omacom/omarchy-plugin-marketplace)
 eingereicht werden.
 
- 
 ## Lizenz
- 
+
 MIT – siehe [LICENSE](LICENSE). Die Werkzeuge selbst gehören
 [klassenkiste.eu](https://klassenkiste.eu) (© Sebastian Blunk, Lübeck).
 
- 
 ## Versionshistorie
- 
+
 Siehe [CHANGELOG.md](CHANGELOG.md) – aktuell: **v1.0.0** (Initial Release).
- 
+
 ---
- 
+
 **Spenden:** Wenn dir die Werkzeuge helfen, freut der Betreiber über eine
 kleine Spende: [paypal.me/bussdee](https://paypal.me/bussdee) 💛
- 
