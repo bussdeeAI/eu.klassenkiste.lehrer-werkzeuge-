@@ -7,6 +7,7 @@ Omarchy-Bar-Widget, das die **12 kostenlosen Lehrer-Werkzeuge** von
 (Quattro-Shell) bringt: ein Klick auf 🎓 **Werkzeuge** öffnet ein Panel mit allen
 Werkzeugen, die dann im Standard-Browser laufen – auf dem Beamer-Laptop genauso
 wie am Arbeitsplatz.
+
  
 ## Enthaltene Werkzeuge
  
@@ -27,11 +28,13 @@ wie am Arbeitsplatz.
  
 Zusätzlich verlinkt das Panel **klassenkiste.eu** und den
 **Spenden-Button** ([paypal.me/bussdee](https://paypal.me/bussdee)).
+
  
 ## Installation
  
 Voraussetzung: [Omarchy](https://omarchy.org) (das Plugin nutzt die Quattro-Shell
 von Omarchy 4 – `BarWidget`/`Panel` aus Quickshell).
+
  
 ### Variante A – per `omarchy` CLI (empfohlen)
  
@@ -42,6 +45,7 @@ omarchy plugin add https://github.com/bussdee/omarchy-klassenkiste.git --enable
 Die CLI klont das Repo, prüft `manifest.json` und legt es unter
 `~/.config/omarchy/plugins/eu.klassenkiste.lehrer-werkzeuge/` ab.
 Danach erscheint 🎓 **Werkzeuge** rechts in der Leiste.
+
  
 ### Variante B – manuell
  
@@ -52,6 +56,7 @@ git clone https://github.com/bussdee/omarchy-klassenkiste.git \
 omarchy plugin validate ~/.config/omarchy/plugins/eu.klassenkiste.lehrer-werkzeuge
 omarchy plugin enable eu.klassenkiste.lehrer-werkzeuge
 ```
+
  
 ## Entfernen
  
@@ -61,6 +66,7 @@ omarchy plugin remove eu.klassenkiste.lehrer-werkzeuge
  
 oder über das Menü: **Setup → Plugins → Remove**.
 Das Deaktivieren ohne Löschen: `omarchy plugin disable eu.klassenkiste.lehrer-werkzeuge`.
+
  
 ## Nutzung
  
@@ -68,6 +74,7 @@ Das Deaktivieren ohne Löschen: `omarchy plugin disable eu.klassenkiste.lehrer-w
 - **Werkzeug antippen** → öffnet im Standard-Browser (z. B. `firefox https://klassenkiste.eu/timer`).
 - **Esc** oder Klick außerhalb → Panel schließen.
 - **Tab** im Panel → zur nächsten Leisten-Panel wechseln (Standard-Verhalten).
+
  
 ## Dateien
  
@@ -81,6 +88,7 @@ omarchy-klassenkiste/
 ├── LICENSE         # MIT
 └── preview.png     # Vorschau für den Plugin-Marketplace
 ```
+
  
 ## Profi-Tipps
  
@@ -98,6 +106,7 @@ omarchy plugin list --json
 QML-Anpassungen (z. B. eigene Links in `Panel.qml`) übernimmt die Shell im
 Regelbetrieb automatisch – sonst einmal `omarchy plugin disable` + `enable`,
 bzw. neu einloggen.
+
  
 ## Externe Abhängigkeiten
  
@@ -105,12 +114,14 @@ bzw. neu einloggen.
   `KeyboardPanel`, `WidgetButton` und die `qs.Commons`/`qs.Ui`-Bibliotheken bereit.
 - **Standard-Browser** – die Werkzeuge selbst laufen auf klassenkiste.eu im Browser;
   das Plugin überträgt keine Daten und startet keine Hintergrundprozesse.
+
  
 ## Datenschutz
  
 Das Plugin führt **keine eigene Datenverarbeitung** durch: Es zeigt eine Liste
 verlinkter Werkzeuge und öffnet URLs im Browser. Kein Tracking, keine
 Telemetrie, keine Zugriffsrechte auf Dateien oder Geräte.
+
  
 ## Marketplace
  
@@ -118,11 +129,13 @@ Das Plugin ist für das offizielle Omarchy-Plugin-Verzeichnis vorbereitet
 (Kategorie: *Productivity*, Tags: `education`, `launcher`, `bar`) und kann über
 das [Submission-Formular](https://github.com/omacom/omarchy-plugin-marketplace)
 eingereicht werden.
+
  
 ## Lizenz
  
 MIT – siehe [LICENSE](LICENSE). Die Werkzeuge selbst gehören
 [klassenkiste.eu](https://klassenkiste.eu) (© Sebastian Blunk, Lübeck).
+
  
 ## Versionshistorie
  
