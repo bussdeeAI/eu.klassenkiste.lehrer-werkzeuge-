@@ -60,11 +60,13 @@ BarWidget {
 
         anchors.fill: parent
         bar: root.bar
-        text: "🎓 Werkzeuge"
-        tooltipText: "Klassenkiste Lehrer-Werkzeuge"
+        text: "🎓"
+        tooltipText: "Klassenkiste Lehrer-Werkzeuge · Links: Panel · Rechtsklick: klassenkiste.eu"
         onPressed: function(buttonCode) {
             if (buttonCode === Qt.LeftButton)
                 root.toggle()
+            else if (buttonCode === Qt.RightButton)
+                Qt.openUrlExternally("https://klassenkiste.eu")
         }
     }
 }

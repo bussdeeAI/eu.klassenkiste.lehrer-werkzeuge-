@@ -4,7 +4,7 @@
 
 Omarchy-Bar-Widget, das die **12 kostenlosen Lehrer-Werkzeuge** von
 [klassenkiste.eu](https://klassenkiste.eu/werkzeuge) direkt in die Omarchy-Leiste
-(Quattro-Shell) bringt: ein Klick auf 🎓 **Werkzeuge** öffnet ein Panel mit allen
+(Quattro-Shell) bringt: ein Klick auf das 🎓-Widget öffnet ein Panel mit allen
 Werkzeugen, die dann im Standard-Browser laufen – auf dem Beamer-Laptop genauso
 wie am Arbeitsplatz.
 
@@ -28,8 +28,9 @@ wie am Arbeitsplatz.
 | 📝 Lückentext-Generator | `/lueckentext` | Arbeitsblatt mit Wortbank, druckbar |
 | 🔗 QR-Code-Generator | `/qr-code` | Aus jedem Link ein QR-Code |
 
-Zusätzlich verlinkt das Panel **klassenkiste.eu** und den
-**Spenden-Button** ([paypal.me/bussdee](https://paypal.me/bussdee)).
+Zusätzlich öffnet eine dezente Zeile am Panel-Ende **klassenkiste.eu**. Im Panel
+sind die Werkzeuge nach **Unterricht**, **Ruhe & Rituale** und **Organisation**
+gruppiert.
 
 ## Installation
 
@@ -44,7 +45,8 @@ omarchy plugin add https://github.com/bussdeeAI/eu.klassenkiste.lehrer-werkzeuge
 
 Die CLI klont das Repo, prüft `manifest.json` und legt es unter
 `~/.config/omarchy/plugins/eu.klassenkiste.lehrer-werkzeuge/` ab.
-Danach erscheint 🎓 **Werkzeuge** rechts in der Leiste.
+Danach erscheint das 🎓-Widget rechts in der Leiste (es zeigt nur das Icon und
+hält die Leiste so schmal – der Name steht im Tooltip).
 
 ### Variante B – per Download (ZIP)
 
@@ -86,7 +88,10 @@ Das Deaktivieren ohne Löschen: `omarchy plugin disable eu.klassenkiste.lehrer-w
 
 ## Nutzung
 
-- **Klick** auf 🎓 **Werkzeuge** in der Leiste → Panel öffnet sich.
+- Das Widget zeigt **nur das 🎓-Icon** – schmal in der Leiste; Name und Hinweise
+  stehen im Tooltip.
+- **Klick** auf das 🎓-Widget in der Leiste → Panel öffnet sich.
+- **Rechtsklick** auf das 🎓-Widget → öffnet klassenkiste.eu direkt.
 - **Werkzeug antippen** → öffnet im Standard-Browser (z. B. `firefox https://klassenkiste.eu/timer`).
 - **Esc** oder Klick außerhalb → Panel schließen.
 - **Tab** im Panel → zur nächsten Leisten-Panel wechseln (Standard-Verhalten).
@@ -97,7 +102,7 @@ Das Deaktivieren ohne Löschen: `omarchy plugin disable eu.klassenkiste.lehrer-w
 eu.klassenkiste.lehrer-werkzeuge/
 ├── manifest.json   # Plugin-Manifest (schemaVersion 1, Kind: bar-widget)
 ├── BarWidget.qml   # Eintrag in der Omarchy-Leiste
-├── Panel.qml       # Panel mit den 12 Werkzeugen + Spenden-Link
+├── Panel.qml       # Panel mit den 12 Werkzeugen + dezentem Klassenkiste-Link
 ├── README.md       # Diese Datei
 ├── CHANGELOG.md    # Versionshistorie
 ├── LICENSE         # MIT
@@ -148,9 +153,4 @@ MIT – siehe [LICENSE](LICENSE). Die Werkzeuge selbst gehören
 
 ## Versionshistorie
 
-Siehe [CHANGELOG.md](CHANGELOG.md) – aktuell: **v1.0.0** (Initial Release).
-
----
-
-**Spenden:** Wenn dir die Werkzeuge helfen, freut der Betreiber über eine
-kleine Spende: [paypal.me/bussdee](https://paypal.me/bussdee) 💛
+Siehe [CHANGELOG.md](CHANGELOG.md) – aktuell: **v1.0.1** (Marketplace-Release).

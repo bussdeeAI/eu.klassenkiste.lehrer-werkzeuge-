@@ -3,6 +3,28 @@
 Alle nennenswerten Änderungen dieses PlugIns werden hier dokumentiert.
 Format orientiert an [Keep a Changelog](https://keepachangelog.com/de/1.1.0/), Versionierung nach [SemVer](https://semver.org/lang/de/).
 
+## [1.0.1] – Marketplace-Release
+
+### Geändert
+- Panel: Die 12 Werkzeuge sind jetzt in drei Gruppen sortiert – **Unterricht**,
+  **Ruhe & Rituale** und **Organisation** (passend zur Website) – so findet man
+  das gesuchte Werkzeug noch schneller.
+- Footer: Der Spenden-Link ist aus dem Panel entfernt (Spenden weiterhin auf
+  klassenkiste.eu möglich). **klassenkiste.eu** ist unten im Panel jetzt als
+  dezente Ein-Zeilen-Verlinkung verlinkt – platzsparend, ohne große Karte.
+- Panel-Kopf zeigt zusätzlich die PlugIn-Version an.
+- Leisten-Widget: kompakt – zeigt nur noch das 🎓-**Icon** ohne Text-Label, die
+  Leiste bleibt schmal (Name und Hinweise stehen im Tooltip). **Rechtsklick** auf
+  das Widget öffnet klassenkiste.eu direkt im Browser (Linksklick wie bisher das
+  Panel).
+
+### Hinzugefügt
+- `preview.png` im Repo-Stamm für die Vorschau im Omarchy-Plugin-Marketplace.
+
+### Datenschutz (unverändert)
+- Kein Tracking, keine Telemetrie, keine Hintergrundprozesse – das PlugIn öffnet
+  ausschließlich URLs im Standard-Browser.
+
 ## [1.0.0] – Initial Release
 
 ### Hinzugefügt

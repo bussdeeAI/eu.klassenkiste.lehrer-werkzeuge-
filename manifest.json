@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "id": "eu.klassenkiste.lehrer-werkzeuge",
   "name": "Klassenkiste Lehrer-Werkzeuge",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Sebastian Blunk · klassenkiste.eu",
   "license": "MIT",
-  "description": "Alle 12 kostenlosen Lehrer-Werkzeuge von klassenkiste.eu direkt aus der Omarchy-Leiste: Lärmampel, Timer, Glücksrad, Würfel, Gruppen-Einteiler, Sitzplan und mehr. Öffnet die Werkzeuge im Browser – inklusive Spenden-Link.",
+  "description": "Alle 12 kostenlosen Lehrer-Werkzeuge von klassenkiste.eu direkt aus der Omarchy-Leiste: Lärmampel, Timer, Glücksrad, Würfel, Gruppen-Einteiler, Sitzplan und mehr. Öffnet die Werkzeuge im Browser – gruppiert nach Unterricht, Ruhe & Rituale und Organisation, mit direktem Link zur Klassenkiste.",
   "kinds": ["bar-widget"],
   "entryPoints": {
     "barWidget": "BarWidget.qml"

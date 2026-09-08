@@ -4,8 +4,9 @@ import qs.Commons
 import qs.Ui
 
 // Panel des Klassenkiste-Plugins: listet die 12 kostenlosen Lehrer-Werkzeuge
-// von klassenkiste.eu und öffnet sie im Standard-Browser.
-// Ganz unten: Link zur Klassenkiste und der Spenden-Button (PayPal).
+// von klassenkiste.eu gruppiert nach Einsatzzweck (Unterricht, Ruhe & Rituale,
+// Organisation) und öffnet sie im Standard-Browser.
+// Ganz unten: dezenter Link zu klassenkiste.eu (eine Zeile, platzsparend).
 
 Panel {
     id: root
@@ -16,82 +17,38 @@ Panel {
     property var anchorItem: null
     property var hostWidget: null
 
+    readonly property string pluginVersion: "1.0.1"
     readonly property string baseUrl: "https://klassenkiste.eu"
-    readonly property string donateUrl: "https://paypal.me/bussdee"
 
-    // Die 12 kostenlosen Werkzeuge von https://klassenkiste.eu/werkzeuge
-    readonly property var tools: [
+    // Die 12 kostenlosen Werkzeuge von https://klassenkiste.eu/werkzeuge,
+    // gruppiert nach Einsatzzweck (wie auf der Website).
+    readonly property var toolGroups: [
         {
-            icon: "🚦",
-            name: "Lärmampel",
-            path: "/laermampel",
-            hint: "Lautstärke sichtbar machen: grün, gelb, rot"
+            title: "Unterricht",
+            tools: [
+                { icon: "🎯", name: "Wer ist dran?", path: "/wer-ist-dran", hint: "Fair auslosen – optional ohne Wiederholung" },
+                { icon: "🎡", name: "Glücksrad", path: "/gluecksrad", hint: "Namen eintragen, drehen, fair auslosen" },
+                { icon: "🎲", name: "Würfel", path: "/wuerfel", hint: "Ein bis sechs Würfel, groß am Beamer" },
+                { icon: "⏱️", name: "Unterrichts-Timer", path: "/timer", hint: "Großer Countdown mit Signalton am Ende" }
+            ]
         },
         {
-            icon: "✋",
-            name: "Gib mir 5",
-            path: "/gib-mir-5",
-            hint: "Ruhe-Signal mit fünf Regeln und Countdown"
+            title: "Ruhe & Rituale",
+            tools: [
+                { icon: "🚦", name: "Lärmampel", path: "/laermampel", hint: "Lautstärke sichtbar machen: grün, gelb, rot" },
+                { icon: "✋", name: "Gib mir 5", path: "/gib-mir-5", hint: "Ruhe-Signal mit fünf Regeln und Countdown" },
+                { icon: "🫧", name: "Atem-Ball", path: "/atem-ball", hint: "Ruhige Atemübung zum Runterkommen" },
+                { icon: "🎵", name: "Stopp-Tanz", path: "/stopp-tanz", hint: "Musik stoppen – alle frieren ein" }
+            ]
         },
         {
-            icon: "🫧",
-            name: "Atem-Ball",
-            path: "/atem-ball",
-            hint: "Ruhige Atemübung zum Runterkommen"
-        },
-        {
-            icon: "🎯",
-            name: "Wer ist dran?",
-            path: "/wer-ist-dran",
-            hint: "Fair auslosen – optional ohne Wiederholung"
-        },
-        {
-            icon: "🎡",
-            name: "Glücksrad",
-            path: "/gluecksrad",
-            hint: "Namen eintragen, drehen, fair auslosen"
-        },
-        {
-            icon: "🎲",
-            name: "Würfel",
-            path: "/wuerfel",
-            hint: "Ein bis sechs Würfel, groß am Beamer"
-        },
-        {
-            icon: "👥",
-            name: "Gruppen-Einteiler",
-            path: "/gruppen-einteiler",
-            hint: "Klasse fair aufteilen, druckbare Liste"
-        },
-        {
-            icon: "🪑",
-            name: "Sitzplan-Generator",
-            path: "/sitzplan",
-            hint: "Tische anordnen, Namen verteilen, drucken"
-        },
-        {
-            icon: "⏱️",
-            name: "Unterrichts-Timer",
-            path: "/timer",
-            hint: "Großer Countdown mit Signalton am Ende"
-        },
-        {
-            icon: "🎵",
-            name: "Stopp-Tanz",
-            path: "/stopp-tanz",
-            hint: "Musik stoppen – alle frieren ein"
-        },
-        {
-            icon: "📝",
-            name: "Lückentext-Generator",
-            path: "/lueckentext",
-            hint: "Arbeitsblatt mit Wortbank in Minuten"
-        },
-        {
-            icon: "🔗",
-            name: "QR-Code-Generator",
-            path: "/qr-code",
-            hint: "Aus jedem Link ein QR-Code"
+            title: "Organisation",
+            tools: [
+                { icon: "👥", name: "Gruppen-Einteiler", path: "/gruppen-einteiler", hint: "Klasse fair aufteilen, druckbare Liste" },
+                { icon: "🪑", name: "Sitzplan-Generator", path: "/sitzplan", hint: "Tische anordnen, Namen verteilen, drucken" },
+                { icon: "📝", name: "Lückentext-Generator", path: "/lueckentext", hint: "Arbeitsblatt mit Wortbank in Minuten" },
+                { icon: "🔗", name: "QR-Code-Generator", path: "/qr-code", hint: "Aus jedem Link einen QR-Code" }
+            ]
         }
     ]
 
@@ -117,6 +74,66 @@ Panel {
 
     function openTool(path) {
         root.openUrl(root.baseUrl + path)
+    }
+
+    // Wiederverwendbare Werkzeug-Zeile (gleiche Struktur wie in v1.0.0).
+    Component {
+        id: toolDelegate
+
+        Item {
+            required property var modelData
+            readonly property bool hovered: area.containsMouse
+
+            width: parent.width
+            height: rowCol.implicitHeight + Style.space(12)
+
+            Rectangle {
+                anchors.fill: parent
+                radius: Style.space(6)
+                color: root.barForeground
+                opacity: parent.hovered ? 0.12 : 0
+            }
+
+            Column {
+                id: rowCol
+
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.leftMargin: Style.space(6)
+                anchors.rightMargin: Style.space(6)
+                spacing: Style.space(1)
+
+                Text {
+                    width: parent.width
+                    text: modelData.icon + "  " + modelData.name
+                    color: root.barForeground
+                    font.family: root.bar ? root.bar.fontFamily : Style.font.family
+                    font.pixelSize: Style.font.subtitle
+                    font.bold: hovered ? true : false
+                    elide: Text.ElideRight
+                }
+
+                Text {
+                    width: parent.width
+                    text: modelData.hint
+                    color: root.barForeground
+                    opacity: 0.55
+                    font.family: root.bar ? root.bar.fontFamily : Style.font.family
+                    font.pixelSize: Math.max(10, Math.round(Style.font.subtitle * 0.72))
+                    elide: Text.ElideRight
+                }
+            }
+
+            MouseArea {
+                id: area
+
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: root.openTool(modelData.path)
+            }
+        }
     }
 
     KeyboardPanel {
@@ -172,7 +189,7 @@ Panel {
 
                     Text {
                         width: parent.width
-                        text: "12 kostenlose Tools – öffnen im Browser"
+                        text: "12 kostenlose Tools – öffnen im Browser · v" + root.pluginVersion
                         color: root.barForeground
                         opacity: 0.55
                         font.family: root.bar ? root.bar.fontFamily : Style.font.family
@@ -182,97 +199,79 @@ Panel {
                 }
             }
 
-            // ── Werkzeug-Liste ────────────────────────────────────
+            // ── Werkzeug-Gruppen ──────────────────────────────────
             Repeater {
-                model: root.tools
+                model: root.toolGroups
 
-                delegate: Item {
+                delegate: Column {
                     required property var modelData
-                    readonly property bool hovered: area.containsMouse
 
                     width: parent.width
-                    height: rowCol.implicitHeight + Style.space(12)
+                    spacing: Style.space(1)
 
-                    Rectangle {
-                        anchors.fill: parent
-                        radius: Style.space(6)
-                        color: root.barForeground
-                        opacity: parent.hovered ? 0.12 : 0
-                    }
-
-                    Column {
-                        id: rowCol
-
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.leftMargin: Style.space(6)
-                        anchors.rightMargin: Style.space(6)
-                        spacing: Style.space(1)
+                    // Gruppen-Überschrift
+                    Item {
+                        width: parent.width
+                        height: groupText.implicitHeight + Style.space(8)
 
                         Text {
-                            width: parent.width
-                            text: modelData.icon + "  " + modelData.name
-                            color: root.barForeground
-                            font.family: root.bar ? root.bar.fontFamily : Style.font.family
-                            font.pixelSize: Style.font.subtitle
-                            font.bold: hovered ? true : false
-                            elide: Text.ElideRight
-                        }
+                            id: groupText
 
-                        Text {
-                            width: parent.width
-                            text: modelData.hint
+                            anchors.left: parent.left
+                            anchors.bottom: parent.bottom
+                            anchors.leftMargin: Style.space(6)
+                            text: modelData.title
                             color: root.barForeground
-                            opacity: 0.55
+                            opacity: 0.5
                             font.family: root.bar ? root.bar.fontFamily : Style.font.family
-                            font.pixelSize: Math.max(10, Math.round(Style.font.subtitle * 0.72))
-                            elide: Text.ElideRight
+                            font.pixelSize: Math.max(10, Math.round(Style.font.subtitle * 0.68))
+                            font.bold: true
+                            font.letterSpacing: 0.8
                         }
                     }
 
-                    MouseArea {
-                        id: area
-
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: root.openTool(modelData.path)
+                    Repeater {
+                        model: modelData.tools
+                        delegate: toolDelegate
                     }
                 }
             }
 
-            // ── Trenner ───────────────────────────────────────────
-            Rectangle {
-                width: parent.width
-                height: 1
-                color: root.barForeground
-                opacity: 0.15
-            }
-
-            // ── Klassenkiste ──────────────────────────────────────
+            // ── Klassenkiste – dezenter Link ──────────────
             Item {
                 width: parent.width
-                height: footerText.implicitHeight + Style.space(12)
+                height: siteText.implicitHeight + Style.space(4)
 
                 Rectangle {
                     anchors.fill: parent
                     radius: Style.space(6)
                     color: root.barForeground
-                    opacity: siteArea.containsMouse ? 0.12 : 0
+                    opacity: siteArea.containsMouse ? 0.08 : 0
                 }
 
                 Text {
-                    id: footerText
+                    id: siteText
 
                     anchors.left: parent.left
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.leftMargin: Style.space(6)
-                    text: "📦  klassenkiste.eu öffnen"
+                    text: "🌐  klassenkiste.eu"
                     color: root.barForeground
+                    opacity: siteArea.containsMouse ? 0.9 : 0.55
                     font.family: root.bar ? root.bar.fontFamily : Style.font.family
-                    font.pixelSize: Style.font.subtitle
+                    font.pixelSize: Math.max(10, Math.round(Style.font.subtitle * 0.72))
                     elide: Text.ElideRight
+                }
+
+                Text {
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.rightMargin: Style.space(6)
+                    text: "↗"
+                    color: root.barForeground
+                    opacity: siteArea.containsMouse ? 0.9 : 0.35
+                    font.family: root.bar ? root.bar.fontFamily : Style.font.family
+                    font.pixelSize: Math.max(10, Math.round(Style.font.subtitle * 0.72))
                 }
 
                 MouseArea {
@@ -282,42 +281,6 @@ Panel {
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
                     onClicked: root.openUrl(root.baseUrl)
-                }
-            }
-
-            // ── Spenden ───────────────────────────────────────────
-            Item {
-                width: parent.width
-                height: donateText.implicitHeight + Style.space(12)
-
-                Rectangle {
-                    anchors.fill: parent
-                    radius: Style.space(6)
-                    color: "#f0b429"
-                    opacity: donateArea.containsMouse ? 0.9 : 0.25
-                }
-
-                Text {
-                    id: donateText
-
-                    anchors.left: parent.left
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.leftMargin: Style.space(6)
-                    text: "💛  Spenden via PayPal – paypal.me/bussdee"
-                    color: root.barForeground
-                    font.family: root.bar ? root.bar.fontFamily : Style.font.family
-                    font.pixelSize: Style.font.subtitle
-                    font.bold: true
-                    elide: Text.ElideRight
-                }
-
-                MouseArea {
-                    id: donateArea
-
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: root.openUrl(root.donateUrl)
                 }
             }
         }
